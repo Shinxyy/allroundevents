@@ -3,148 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Allround Events bedenkt, organiseert en produceert bedrijfsevents die van uitnodiging tot laatste ronde kloppen." />
+    <meta name="description" content="Allround Events — ontdek aankomende events en open jouw persoonlijke eventdashboard." />
     <meta name="theme-color" content="#f7f1e8" />
-    <title>Allround Events — momenten die blijven hangen</title>
+    <title>Allround Events — eventoverzicht</title>
     <link rel="icon" href="assets/allround-events-mark.webp" type="image/webp" />
     <link rel="preload" href="assets/eindejaarsfeest-hero.webp" as="image" type="image/webp" />
     <link rel="stylesheet" href="styles.css" />
     <script src="site-config.js" defer></script>
     <script src="script.js" defer></script>
   </head>
-  <body>
-    <a class="skip-link" href="#main-content">Direct naar de inhoud</a>
-    <header class="site-header" data-header>
-      <div class="header-inner">
-        <a class="brand" href="#top" aria-label="Allround Events, naar boven">
-          <img src="assets/allround-events-mark.webp" alt="" width="52" height="48" />
-          <span class="brand-copy"><strong>ALLROUND</strong><span>EVENTS</span></span>
-        </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
-          <span></span><span></span><span></span><span class="sr-only">Menu openen</span>
-        </button>
-        <nav class="main-nav" id="main-navigation" aria-label="Hoofdnavigatie">
-          <a href="#diensten">Wat we doen</a><a href="#aanpak">Onze aanpak</a><a href="#preview">Event preview</a><a href="#contact">Contact</a>
-        </nav>
-        <a class="button button--small button--dark account-button" href="https://mijn-events.example.com" data-events-link>
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0" /></svg><span>Mijn events</span>
-        </a>
-      </div>
+  <body class="hub-page">
+    <a class="skip-link" href="#events">Direct naar de events</a>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Allround Events, naar het eventoverzicht">
+        <img src="assets/allround-events-mark.webp" alt="" width="48" height="44" />
+        <span><strong>ALLROUND</strong><small>EVENTS</small></span>
+      </a>
+      <nav aria-label="Hoofdnavigatie">
+        <a href="#events">Events</a>
+        <a href="#over">Over Allround</a>
+      </nav>
+      <a class="account-link" href="https://mijn-events.example.com" data-dashboard-link="general">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0" /></svg>
+        <span>Mijn events</span>
+      </a>
     </header>
 
-    <main id="main-content">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-orbit hero-orbit--one" aria-hidden="true"></div><div class="hero-orbit hero-orbit--two" aria-hidden="true"></div>
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow"><span></span> Concept · Productie · Beleving</div>
-            <h1 id="hero-title">Wij maken ruimte voor <em>mooie momenten.</em></h1>
-            <p>Van eerste idee tot laatste ronde. Allround Events bedenkt en organiseert bedrijfsevents die goed voelen én goed geregeld zijn.</p>
-            <div class="hero-actions">
-              <a class="button button--gold" href="#contact">Vertel ons je idee <span>→</span></a>
-              <a class="text-link" href="#aanpak">Zo werken we <span>↓</span></a>
+    <main>
+      <section class="hub-hero">
+        <div class="hub-hero__copy">
+          <p class="eyebrow"><span></span> Alles op één plek</p>
+          <h1>Een event begint met <em>voorpret.</em></h1>
+          <p class="hub-intro">Bekijk onze events, open je persoonlijke uitnodiging en regel je deelname via jouw eigen dashboard.</p>
+        </div>
+        <a class="sso-cta sso-cta--hero" href="https://mijn-events.example.com" data-dashboard-link="general">
+          <span class="microsoft-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span><small>Veilig via Microsoft SSO</small><strong>Open Mijn events</strong></span>
+          <b aria-hidden="true">→</b>
+        </a>
+      </section>
+
+      <section class="event-overview" id="events" aria-labelledby="events-title">
+        <div class="section-title">
+          <div><p class="eyebrow"><span></span> Eventoverzicht</p><h2 id="events-title">Waar zien we je?</h2></div>
+          <p>Iedere uitnodiging krijgt een eigen eventpagina. De concepten hieronder laten zien hoe verschillende events binnen Allround Events een eigen sfeer krijgen.</p>
+        </div>
+
+        <div class="event-grid">
+          <article class="event-card event-card--featured">
+            <a class="event-card__visual event-card__visual--photo" href="woonwaard.html" aria-label="Bekijk de eventpagina van het Woonwaard Eindejaarsfeest">
+              <img src="assets/eindejaarsfeest-hero.webp" alt="Sfeervol Woonwaard eindejaarsfeest" width="1774" height="887" />
+              <span class="privacy-pill">Alleen op uitnodiging</span>
+              <div class="event-date"><strong>17</strong><span>DEC<br />2026</span></div>
+            </a>
+            <div class="event-card__content">
+              <div><span class="event-type">Woonwaard · Eindejaarsfeest</span><h3>Samen het jaar mooi afsluiten</h3></div>
+              <a class="round-link" href="woonwaard.html" aria-label="Open Woonwaard eventpagina">↗</a>
             </div>
-            <div class="hero-note"><span class="hero-note__spark" aria-hidden="true">✦</span><p><strong>Eén team, één draaiboek.</strong><br />Van uitnodiging tot thuiskomst.</p></div>
-          </div>
-          <div class="hero-visual">
-            <div class="hero-image-wrap">
-              <img src="assets/eindejaarsfeest-hero.webp" alt="Collega’s genieten samen van een sfeervol bedrijfsevent" width="1774" height="887" />
-              <div class="hero-image-tag"><span>Nu in productie</span><strong>Eindejaarsfeest ’26</strong></div>
+          </article>
+
+          <article class="event-card event-card--winter">
+            <div class="event-card__visual concept-visual concept-visual--winter">
+              <span class="concept-label">Voorbeeldconcept</span><i></i><i></i><i></i><div class="event-date event-date--light"><strong>29</strong><span>JAN<br />2027</span></div>
             </div>
-            <div class="hero-stamp" aria-hidden="true"><span>ALLROUND</span><b>✦</b><span>EVENTS</span></div>
-            <div class="hero-badge"><strong>360°</strong><span>eventproductie</span></div>
-          </div>
-        </div>
-      </section>
+            <div class="event-card__content"><div><span class="event-type">Winterevent</span><h3>Winterlicht</h3></div><span class="card-status">Concept</span></div>
+          </article>
 
-      <section class="ticker" aria-label="Onze specialisaties"><div class="ticker-track"><span>Bedrijfsfeesten</span><i>✦</i><span>Personeelsevents</span><i>✦</i><span>Jubilea</span><i>✦</i><span>Eindejaarsfeesten</span><i>✦</i><span>Openingen</span><i>✦</i><span>Bedrijfsfeesten</span></div></section>
-
-      <section class="services section" id="diensten" aria-labelledby="services-title">
-        <div class="container">
-          <div class="section-intro section-intro--split">
-            <div><div class="eyebrow eyebrow--dark"><span></span> Alles onder één dak</div><h2 id="services-title">Van goed idee naar <em>groots gevoel.</em></h2></div>
-            <p>We combineren creativiteit met een strakke productie. Jij houdt overzicht, je gasten beleven een event dat vanzelf lijkt te gaan.</p>
-          </div>
-          <div class="service-grid">
-            <article class="service-card service-card--cream">
-              <div class="service-top"><span>01</span><div class="service-icon" aria-hidden="true">◎</div></div><h3>Concept &amp; creatie</h3>
-              <p>Een sterk thema, verrassende programmering en een visuele lijn die klopt bij je organisatie.</p><ul><li>Creatief concept</li><li>Programma &amp; entertainment</li><li>Eventdesign</li></ul>
-            </article>
-            <article class="service-card service-card--lilac">
-              <div class="service-top"><span>02</span><div class="service-icon" aria-hidden="true">◇</div></div><h3>Productie &amp; regie</h3>
-              <p>Locatie, techniek, catering en crew: één ervaren productieteam houdt alle lijnen bij elkaar.</p><ul><li>Planning &amp; draaiboek</li><li>Leveranciers &amp; techniek</li><li>Regie op locatie</li></ul>
-            </article>
-            <article class="service-card service-card--green">
-              <div class="service-top"><span>03</span><div class="service-icon" aria-hidden="true">✦</div></div><h3>Uitnodiging &amp; gasten</h3>
-              <p>Van persoonlijke uitnodiging tot registratie en praktische updates in een eigen eventomgeving.</p><ul><li>Uitnodigingstraject</li><li>Koppeling naar SSO-omgeving</li><li>Registratie &amp; updates</li></ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="approach section" id="aanpak" aria-labelledby="approach-title">
-        <div class="container approach-grid">
-          <div class="approach-intro">
-            <div class="eyebrow eyebrow--light"><span></span> Onze aanpak</div><h2 id="approach-title">Persoonlijk in contact. <em>Scherp in uitvoering.</em></h2>
-            <p>Geen standaardpakket, wel een helder proces. Zo blijft er ruimte voor ideeën zonder grip op planning en budget te verliezen.</p><a class="button button--gold" href="#contact">Start een gesprek <span>→</span></a>
-          </div>
-          <ol class="approach-steps">
-            <li><span>01</span><div><h3>Luisteren</h3><p>We leren je organisatie, gasten en ambitie kennen.</p></div></li>
-            <li><span>02</span><div><h3>Verrassen</h3><p>We vertalen de briefing naar een eigen eventconcept.</p></div></li>
-            <li><span>03</span><div><h3>Regelen</h3><p>Planning, partners en productie komen samen in één draaiboek.</p></div></li>
-            <li><span>04</span><div><h3>Beleven</h3><p>Op de dag zelf heb jij aandacht voor je gasten. Wij doen de rest.</p></div></li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="case section" id="preview" aria-labelledby="case-title">
-        <div class="container">
-          <div class="case-label"><span>Project preview</span><span>Woonwaard · 2026</span></div>
-          <div class="case-card">
-            <div class="case-image"><img src="assets/eindejaarsfeest-hero.webp" alt="Preview van het Woonwaard eindejaarsfeest" width="1774" height="887" loading="lazy" /><div class="case-date"><strong>17</strong><span>DEC<br />2026</span></div></div>
-            <div class="case-copy">
-              <div class="eyebrow eyebrow--dark"><span></span> Eindejaarsfeest</div><h2 id="case-title">Samen het jaar <em>mooi afsluiten.</em></h2>
-              <p>Een warme winteravond voor Woonwaard, met live muziek, verrassende smaken en volop ruimte om elkaar te ontmoeten. Hier zie je alvast een voorproefje; de persoonlijke uitnodiging en registratie staan veilig in Mijn events.</p>
-              <dl class="case-facts"><div><dt>Datum</dt><dd>Donderdag 17 december</dd></div><div><dt>Regio</dt><dd>Alkmaar</dd></div><div><dt>Toegang</dt><dd>Alleen voor genodigden</dd></div></dl>
-              <a class="sso-link" href="https://mijn-events.example.com" data-events-link>
-                <span class="microsoft-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                <span class="sso-link__copy"><small>Mijn events</small><strong>Inloggen met Microsoft SSO</strong></span>
-                <span class="sso-link__arrow" aria-hidden="true">→</span>
-              </a>
-              <p class="case-security"><span aria-hidden="true">●</span> Je wordt doorgestuurd naar de beveiligde SSO-inlogpagina.</p>
+          <article class="event-card event-card--future">
+            <div class="event-card__visual concept-visual concept-visual--future">
+              <span class="concept-label">Voorbeeldconcept</span><span class="future-orbit"></span><span class="future-star">✦</span><div class="event-date"><strong>12</strong><span>MRT<br />2027</span></div>
             </div>
-          </div>
-        </div>
-      </section>
+            <div class="event-card__content"><div><span class="event-type">Bedrijfssummit</span><h3>Future Forward</h3></div><span class="card-status">Concept</span></div>
+          </article>
 
-      <section class="guest-journey section" aria-labelledby="journey-title">
-        <div class="container guest-grid">
-          <div><div class="eyebrow eyebrow--dark"><span></span> Voor iedere gast persoonlijk</div><h2 id="journey-title">Jouw event begint al bij de <em>uitnodiging.</em></h2></div>
-          <div class="guest-copy">
-            <p>Genodigden openen via de SSO-knop de externe Mijn events-omgeving. Daar vinden zij hun persoonlijke uitnodigingen en registratie.</p>
-            <div class="guest-features">
-              <div><span aria-hidden="true">✓</span><p><strong>Veilig aanmelden</strong>Geen los wachtwoord nodig</p></div><div><span aria-hidden="true">✓</span><p><strong>Alles op één plek</strong>Programma, locatie en updates</p></div><div><span aria-hidden="true">✓</span><p><strong>Snel reageren</strong>Aan- of afmelden in een paar klikken</p></div>
+          <article class="event-card event-card--summer">
+            <div class="event-card__visual concept-visual concept-visual--summer">
+              <span class="concept-label">Voorbeeldconcept</span><span class="summer-sun"></span><span class="summer-wave"></span><div class="event-date"><strong>18</strong><span>JUN<br />2027</span></div>
             </div>
-            <a class="text-link" href="https://mijn-events.example.com" data-events-link>Open Mijn events <span>→</span></a>
-          </div>
+            <div class="event-card__content"><div><span class="event-type">Teamfestival</span><h3>Summer Social</h3></div><span class="card-status">Concept</span></div>
+          </article>
         </div>
       </section>
 
-      <section class="contact section" id="contact" aria-labelledby="contact-title">
-        <div class="contact-shape" aria-hidden="true">✦</div>
-        <div class="container contact-grid">
-          <div class="contact-copy"><div class="eyebrow eyebrow--light"><span></span> Zullen we?</div><h2 id="contact-title">Vertel ons wat je wilt <em>vieren.</em></h2><p>Een eerste idee, een concrete datum of alleen de wens om iets bijzonders te doen? We denken graag vanaf het begin mee.</p><div class="contact-promise"><span>↗</span><p><strong>Persoonlijk contact</strong>Een reactie van een eventmaker, geen automatisch voorstel.</p></div></div>
-          <form class="contact-form" id="contact-form">
-            <div class="field-row"><label>Naam<input type="text" name="name" autocomplete="name" required placeholder="Jouw naam" /></label><label>Organisatie<input type="text" name="company" autocomplete="organization" placeholder="Bedrijfsnaam" /></label></div>
-            <label>Werk e-mailadres<input type="email" name="email" autocomplete="email" required placeholder="naam@organisatie.nl" /></label><label>Waar mogen we over meedenken?<textarea name="message" rows="4" required placeholder="Vertel kort iets over het event..."></textarea></label>
-            <div class="contact-form__bottom"><p data-contact-message role="status">Het formulier is een preview en nog niet aan een mailbox gekoppeld.</p><button class="button button--gold" type="submit">Versturen <span>→</span></button></div>
-          </form>
-        </div>
+      <section class="about-strip" id="over">
+        <div><p class="eyebrow eyebrow--light"><span></span> Allround Events</p><h2>Van eerste idee tot <em>laatste ronde.</em></h2></div>
+        <p>We ontwerpen, produceren en begeleiden bedrijfsevents met één vast team. Iedere opdrachtgever krijgt een eigen eventomgeving voor uitnodigingen, praktische informatie en registratie.</p>
       </section>
     </main>
 
-    <footer class="site-footer"><div class="container footer-main"><a class="brand brand--footer" href="#top" aria-label="Allround Events, naar boven"><img src="assets/allround-events-mark.webp" alt="" width="48" height="44" /><span class="brand-copy"><strong>ALLROUND</strong><span>EVENTS</span></span></a><p>Events die kloppen.<br />Van idee tot laatste ronde.</p><div class="footer-links"><a href="#diensten">Wat we doen</a><a href="#contact">Contact</a><a href="https://mijn-events.example.com" data-events-link>Mijn events</a></div></div><div class="container footer-bottom"><span>© 2026 Allround Events</span><span>Privacy · Voorwaarden</span></div></footer>
-
-    <div class="toast" role="status" aria-live="polite" data-toast></div>
+    <footer class="site-footer">
+      <span>© 2026 Allround Events</span>
+      <a href="woonwaard.html">Woonwaard eventpagina</a>
+      <a href="https://mijn-events.example.com" data-dashboard-link="general">Mijn events</a>
+    </footer>
   </body>
 </html>
