@@ -1,6 +1,11 @@
 # Allround Events
 
-Een compacte, responsive eventhub in gewone HTML, CSS en JavaScript. `index.html` toont het eventoverzicht; `woonwaard.html` is de eigen besloten-look eventpagina voor het Woonwaard Eindejaarsfeest.
+Een compacte, responsive eventhub in gewone HTML, CSS en JavaScript. `index.html` toont het eventoverzicht. Iedere case heeft een eigen besloten-look eventpagina:
+
+- `woonwaard.html` — Woonwaard Eindejaarsfeest
+- `winterlicht.html` — fictieve winteravond voor Borealis Works
+- `future-forward.html` — fictieve bedrijfssummit voor Northstar Labs
+- `summer-social.html` — fictief teamfestival voor Coastline Collective
 
 ## Lokaal bekijken
 
@@ -21,8 +26,11 @@ window.ALLROUND_SITE_CONFIG = {
   dashboardUrls: {
     general: "https://jouw-echte-sso-pagina.nl",
     woonwaard: "https://jouw-echte-sso-pagina.nl/woonwaard-2026",
+    winterlicht: "https://jouw-echte-sso-pagina.nl/winterlicht-2027",
+    future: "https://jouw-echte-sso-pagina.nl/future-forward-2027",
+    summer: "https://jouw-echte-sso-pagina.nl/summer-social-2027",
   },
 };
 ```
 
-De algemene knoppen gebruiken `general`; de call-to-action op de Woonwaard-pagina gebruikt de event-specifieke `woonwaard`-URL. De website zelf bevat geen Microsoft- of SSO-authenticatiecode.
+De algemene knoppen gebruiken `general`; iedere eventpagina gebruikt de gelijknamige event-URL. De website zelf bevat geen Microsoft- of SSO-authenticatiecode.
