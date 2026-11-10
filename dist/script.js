@@ -1,25 +1,45 @@
-const header=document.querySelector("[data-header]"),menuButton=document.querySelector(".menu-toggle"),navigation=document.querySelector(".main-nav"),ssoModal=document.querySelector("#sso-modal"),portalModal=document.querySelector("#portal-modal"),ssoMessage=document.querySelector("[data-sso-message]"),microsoftButton=document.querySelector("[data-microsoft-login]"),loginLabel=document.querySelector("[data-login-label]"),toast=document.querySelector("[data-toast]"),authSettings=window.ALLROUND_AUTH_CONFIG||{};
-let msalApp=null,currentAccount=null,isRegistered=false,toastTimer;
-const hasSsoConfiguration=Boolean(authSettings.clientId&&!String(authSettings.clientId).includes("VUL_HIER")&&!String(authSettings.clientId).includes("YOUR_"));
-const storage={get(key,fallback=null){try{const value=localStorage.getItem(key);return value===null?fallback:JSON.parse(value)}catch{return fallback}},set(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}};
-function setBodyModalState(){document.body.classList.toggle("modal-open",Boolean(document.querySelector("dialog[open]")))}
-function openDialog(dialog){if(!dialog)return;document.querySelectorAll("dialog[open]").forEach(openModal=>{if(openModal!==dialog)openModal.close()});if(!dialog.open)dialog.showModal();setBodyModalState()}
-function closeDialog(dialog){if(dialog?.open)dialog.close();setBodyModalState()}
-function showToast(message){if(!toast)return;toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),3500)}
-function showSsoMessage(message,isError=false){ssoMessage.textContent=message;ssoMessage.hidden=false;ssoMessage.classList.toggle("is-error",isError)}
-function registrationKey(){const id=currentAccount?.homeAccountId||currentAccount?.username||"anonymous";return`allroundEventsRegistration:${id}:woonwaard-2026`}
-function displayName(account){if(account?.name)return account.name.split(" ")[0];const first=(account?.username||"").split("@")[0].split(/[._-]/)[0];return first?first.charAt(0).toUpperCase()+first.slice(1):"daar"}
-function updatePortal(){const email=currentAccount?.username||"werkaccount";document.querySelectorAll("[data-user-name]").forEach(node=>{node.textContent=displayName(currentAccount)});document.querySelectorAll("[data-user-email]").forEach(node=>{node.textContent=email});document.querySelectorAll("[data-confirmation-email]").forEach(node=>{node.textContent=email});const register=document.querySelector("[data-register]"),cancel=document.querySelector("[data-cancel-registration]"),confirmation=document.querySelector("[data-confirmation]"),status=document.querySelector("[data-event-status]");if(register)register.hidden=isRegistered;if(cancel)cancel.hidden=!isRegistered;if(confirmation)confirmation.hidden=!isRegistered;if(status){status.textContent=isRegistered?"Aangemeld":"Uitgenodigd";status.classList.toggle("registered",isRegistered)}}
-function setCurrentAccount(account){currentAccount=account||null;if(currentAccount&&msalApp?.setActiveAccount)msalApp.setActiveAccount(currentAccount);isRegistered=currentAccount?storage.get(registrationKey(),false):false;updatePortal()}
-async function initializeMicrosoftSso(){if(!hasSsoConfiguration||typeof window.msal==="undefined")return;const tenant=authSettings.tenantId||"organizations",authority=`https://login.microsoftonline.com/${tenant}`,redirectUri=authSettings.redirectUri||`${location.origin}${location.pathname}`;msalApp=new window.msal.PublicClientApplication({auth:{clientId:authSettings.clientId,authority,redirectUri,postLogoutRedirectUri:redirectUri},cache:{cacheLocation:"sessionStorage",storeAuthStateInCookie:false}});if(typeof msalApp.initialize==="function")await msalApp.initialize();const result=await msalApp.handleRedirectPromise(),account=result?.account||msalApp.getActiveAccount()||msalApp.getAllAccounts()[0];setCurrentAccount(account)}
-const authReady=initializeMicrosoftSso().catch(error=>console.error("Microsoft SSO kon niet worden geïnitialiseerd.",error));
-async function openEvents(){await authReady;if(currentAccount){updatePortal();openDialog(portalModal)}else{ssoMessage.hidden=true;openDialog(ssoModal)}}
-document.querySelectorAll("[data-open-events]").forEach(button=>button.addEventListener("click",openEvents));
-microsoftButton?.addEventListener("click",async()=>{ssoMessage.hidden=true;if(!hasSsoConfiguration){showSsoMessage("De Microsoft-koppeling staat klaar, maar is in deze preview nog niet geactiveerd. Voeg de Entra client-ID toe in auth-config.js.");return}if(!msalApp){showSsoMessage("De Microsoft-login kon niet worden geladen. Controleer je internetverbinding en probeer opnieuw.",true);return}microsoftButton.disabled=true;loginLabel.textContent="Microsoft openen…";try{const result=await msalApp.loginPopup({scopes:["openid","profile","email"],prompt:"select_account"});setCurrentAccount(result.account);closeDialog(ssoModal);openDialog(portalModal)}catch(error){const cancelled=["user_cancelled","popup_window_error","empty_window_error"].includes(error?.errorCode);showSsoMessage(cancelled?"Het Microsoft-inlogvenster is gesloten. Probeer opnieuw wanneer je klaar bent.":"Inloggen is niet gelukt. Controleer je account of neem contact op met de eventorganisatie.",!cancelled)}finally{microsoftButton.disabled=false;loginLabel.textContent="Doorgaan met Microsoft"}});
-document.querySelector("[data-logout]")?.addEventListener("click",async()=>{const account=currentAccount;closeDialog(portalModal);setCurrentAccount(null);if(msalApp&&account){try{await msalApp.logoutPopup({account,mainWindowRedirectUri:location.href})}catch{showToast("Je lokale sessie is beëindigd.")}}else showToast("Je bent uitgelogd.")});
-document.querySelector("[data-register]")?.addEventListener("click",()=>{if(!currentAccount)return;isRegistered=true;storage.set(registrationKey(),true);updatePortal();showToast("Gelukt! Je bent aangemeld voor het Woonwaard Eindejaarsfeest.")});
-document.querySelector("[data-cancel-registration]")?.addEventListener("click",()=>{if(!currentAccount)return;isRegistered=false;storage.set(registrationKey(),false);updatePortal();showToast("Je aanmelding is geannuleerd. Je kunt je later opnieuw aanmelden.")});
-document.querySelectorAll("[data-close-modal]").forEach(button=>button.addEventListener("click",()=>closeDialog(button.closest("dialog"))));document.querySelectorAll("dialog").forEach(dialog=>{dialog.addEventListener("click",event=>{const bounds=dialog.getBoundingClientRect(),outside=event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom;if(outside)closeDialog(dialog)});dialog.addEventListener("close",setBodyModalState)});
-menuButton?.addEventListener("click",()=>{const open=navigation.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(open));menuButton.querySelector(".sr-only").textContent=open?"Menu sluiten":"Menu openen"});navigation?.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{navigation.classList.remove("open");menuButton?.setAttribute("aria-expanded","false")}));
-document.querySelector("#contact-form")?.addEventListener("submit",event=>{event.preventDefault();document.querySelector("[data-contact-message]").textContent="Bedankt! Voor live gebruik moet dit formulier nog aan de Allround Events-mailbox worden gekoppeld.";showToast("Formulier gecontroleerd — de mailboxkoppeling ontbreekt nog.")});
-function updateHeader(){header?.classList.toggle("scrolled",scrollY>24)}addEventListener("scroll",updateHeader,{passive:true});updateHeader();updatePortal();
+const header = document.querySelector("[data-header]");
+const menuButton = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".main-nav");
+const toast = document.querySelector("[data-toast]");
+const siteConfig = window.ALLROUND_SITE_CONFIG || {};
+let toastTimer;
+
+document.querySelectorAll("[data-events-link]").forEach((link) => {
+  link.href = siteConfig.myEventsUrl || "https://mijn-events.example.com";
+});
+
+function showToast(message) {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => toast.classList.remove("show"), 3500);
+}
+
+menuButton?.addEventListener("click", () => {
+  const isOpen = navigation.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.querySelector(".sr-only").textContent = isOpen ? "Menu sluiten" : "Menu openen";
+});
+
+navigation?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+  });
+});
+
+document.querySelector("#contact-form")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  document.querySelector("[data-contact-message]").textContent =
+    "Bedankt! Voor live gebruik moet dit formulier nog aan de Allround Events-mailbox worden gekoppeld.";
+  showToast("Formulier gecontroleerd — de mailboxkoppeling ontbreekt nog.");
+});
+
+function updateHeader() {
+  header?.classList.toggle("scrolled", window.scrollY > 24);
+}
+
+window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader();
