@@ -1,6 +1,6 @@
 # Allround Events
 
-Een responsive Allround Events-website in gewone HTML, CSS en JavaScript. De openbare website bevat een preview van het Woonwaard Eindejaarsfeest en verwijst bezoekers door naar een externe Mijn events/SSO-pagina.
+Een compacte, responsive eventhub in gewone HTML, CSS en JavaScript. `index.html` toont het eventoverzicht; `woonwaard.html` is de eigen besloten-look eventpagina voor het Woonwaard Eindejaarsfeest.
 
 ## Lokaal bekijken
 
@@ -14,14 +14,15 @@ Open daarna `http://localhost:4173`.
 
 ## Mijn events-link instellen
 
-Vervang in `site-config.js` de tijdelijke URL:
+Vervang in `site-config.js` de tijdelijke dashboard-URL's:
 
 ```js
 window.ALLROUND_SITE_CONFIG = {
-  myEventsUrl: "https://jouw-echte-sso-pagina.nl",
+  dashboardUrls: {
+    general: "https://jouw-echte-sso-pagina.nl",
+    woonwaard: "https://jouw-echte-sso-pagina.nl/woonwaard-2026",
+  },
 };
 ```
 
-Alle knoppen naar Mijn events gebruiken automatisch deze ene URL. De website zelf bevat geen Microsoft- of SSO-authenticatiecode.
-
-Het contactformulier is bewust nog niet aan een mailbox of CRM gekoppeld en communiceert dat ook in de interface.
+De algemene knoppen gebruiken `general`; de call-to-action op de Woonwaard-pagina gebruikt de event-specifieke `woonwaard`-URL. De website zelf bevat geen Microsoft- of SSO-authenticatiecode.

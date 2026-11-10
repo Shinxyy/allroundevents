@@ -1,4 +1,7 @@
-// Vervang deze URL later door de echte Microsoft SSO / Mijn events-pagina.
+// Vervang deze URL's later door de echte Microsoft SSO / eventdashboard-pagina's.
 window.ALLROUND_SITE_CONFIG = {
-  myEventsUrl: "https://mijn-events.example.com",
+  dashboardUrls: {
+    general: "https://mijn-events.example.com",
+    woonwaard: "https://mijn-events.example.com/woonwaard-2026",
+  },
 };
