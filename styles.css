@@ -77,7 +77,7 @@ a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 .event-card--future .event-card__visual img { object-position: 50% 46%; }
 .event-card--summer .event-card__visual img { object-position: 52% 55%; }
 .event-card:hover .event-card__visual img { transform: scale(1.025); }
-.privacy-pill, .concept-label { position: absolute; z-index: 3; top: 18px; left: 18px; padding: 7px 10px; color: white; background: rgba(3,44,35,.75); border: 1px solid rgba(255,255,255,.23); border-radius: 999px; backdrop-filter: blur(8px); font-size: .55rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.privacy-pill { position: absolute; z-index: 3; top: 18px; left: 18px; padding: 7px 10px; color: white; background: rgba(3,44,35,.75); border: 1px solid rgba(255,255,255,.23); border-radius: 999px; backdrop-filter: blur(8px); font-size: .55rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .event-date { position: absolute; z-index: 3; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 10px; padding: 13px 15px; color: var(--forest); background: var(--gold); border-radius: 13px; transform: rotate(-2deg); }
 .event-date strong { padding-right: 10px; border-right: 1px solid rgba(3,44,35,.24); font-family: var(--display); font-size: 2rem; line-height: .9; }
 .event-date span { font-size: .55rem; font-weight: 900; letter-spacing: .1em; line-height: 1.35; }

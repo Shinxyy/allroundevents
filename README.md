@@ -3,9 +3,9 @@
 Een compacte, responsive eventhub in gewone HTML, CSS en JavaScript. `index.html` toont het eventoverzicht. Iedere case heeft een eigen besloten-look eventpagina:
 
 - `woonwaard.html` — Woonwaard Eindejaarsfeest
-- `winterlicht.html` — fictieve winteravond voor Borealis Works
-- `future-forward.html` — fictieve bedrijfssummit voor Northstar Labs
-- `summer-social.html` — fictief teamfestival voor Coastline Collective
+- `winterlicht.html` — winteravond voor Borealis Works
+- `future-forward.html` — bedrijfssummit voor Northstar Labs
+- `summer-social.html` — teamfestival voor Coastline Collective
 
 ## Lokaal bekijken
 
