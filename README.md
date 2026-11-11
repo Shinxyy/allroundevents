@@ -3,6 +3,7 @@
 Een compacte, responsive eventhub in gewone HTML, CSS en JavaScript. `index.html` toont het eventoverzicht. Iedere case heeft een eigen besloten-look eventpagina:
 
 - `woonwaard.html` — Woonwaard Eindejaarsfeest
+- `woonwaard-bedankt.html` — bevestigingspagina na een geslaagde Woonwaard-aanmelding
 - `winterlicht.html` — winteravond voor Borealis Works
 - `future-forward.html` — bedrijfssummit voor Northstar Labs
 - `summer-social.html` — teamfestival voor Coastline Collective
@@ -34,3 +35,5 @@ window.ALLROUND_SITE_CONFIG = {
 ```
 
 De algemene knoppen gebruiken `general`; iedere eventpagina gebruikt de gelijknamige event-URL. De website zelf bevat geen Microsoft- of SSO-authenticatiecode.
+
+Laat het toekomstige registratiesysteem na een geslaagde Woonwaard-aanmelding doorsturen naar `woonwaard-bedankt.html`.
